@@ -4,7 +4,10 @@
 <p>
   <strong>Url:</strong>
   <%= @image.url %>
+  <br>
+  <strong>Image:</strong>
+  <br>
+  <%= image_tag @image.url %>
 </p>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>
