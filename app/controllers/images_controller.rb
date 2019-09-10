@@ -1,9 +1,12 @@
 class ImagesController < ApplicationController
   before_action :find_image, only: %i[show edit update destroy]
 
-  def show; end
+  def show
+    @title = 'Show Image'
+  end
 
   def new
+    @title = 'New Image'
     @image = Image.new
   end
 
