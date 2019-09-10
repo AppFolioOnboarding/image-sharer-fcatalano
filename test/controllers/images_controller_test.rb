@@ -31,5 +31,4 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get image_url(@valid_image)
     assert_response :success
   end
-
 end
