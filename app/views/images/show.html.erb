@@ -4,6 +4,9 @@
   <strong>Url:</strong>
   <%= @image.url %>
   <br>
+  <strong>Tags:</strong>
+  <%= @image.tag_list.join(', ') %>
+  <br>
   <strong>Image:</strong>
   <br>
   <%= image_tag @image.url, class: 'image', skip_pipeline: true %>
