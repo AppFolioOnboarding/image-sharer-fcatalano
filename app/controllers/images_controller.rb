@@ -1,6 +1,11 @@
 class ImagesController < ApplicationController
   before_action :find_image, only: %i[show edit update destroy]
 
+  def index
+    @title = 'Images'
+    @images = Image.all
+  end
+
   def show
     @title = 'Show Image'
   end
