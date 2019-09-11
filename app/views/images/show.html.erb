@@ -11,5 +11,5 @@
   <br>
   <%= image_tag @image.url, class: 'image', skip_pipeline: true %>
 </p>
-
-<%= link_to 'Back', images_path %>
+<%= button_to 'Delete', image_path(@image.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+<%= button_to 'Back', images_path, method: :get %>

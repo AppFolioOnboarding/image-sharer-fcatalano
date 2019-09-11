@@ -21,6 +21,8 @@
         Tags:
         <%= image.tag_list.map {|tag| link_to tag, images_path(tag: tag)}.join(", ").html_safe %>
         <br>
+        <%= button_to 'Delete', image_path(image.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <br>
         <br>
       </td>
     </tr>
