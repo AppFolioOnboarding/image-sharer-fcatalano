@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
 
   def index
     @title = 'Images'
-    @images = Image.all
+    @images = Image.filter(params[:tag])
   end
 
   def show
@@ -32,6 +32,6 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:url, :tag_list)
+    params.require(:image).permit(:url, :tag_list, :tag)
   end
 end
