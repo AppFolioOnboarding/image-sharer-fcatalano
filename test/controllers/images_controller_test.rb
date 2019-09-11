@@ -53,4 +53,13 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
   end
+
+  test 'should destroy image' do
+    image = Image.create(url: 'https://via.placeholder.com/100.jpg', tag_list: ['placeholder'])
+    assert_difference('Image.count', -1) do
+      delete image_url(image)
+    end
+
+    assert_redirected_to images_url
+  end
 end

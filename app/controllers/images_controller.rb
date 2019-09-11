@@ -25,6 +25,11 @@ class ImagesController < ApplicationController
     end
   end
 
+  def destroy
+    @image.destroy
+    redirect_to images_url
+  end
+
   private
 
   def find_image
