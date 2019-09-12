@@ -3,11 +3,11 @@
 import assert from 'assert';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Feedback from "../../components/Feedback";
+import FeedbackForm from '../../components/FeedbackForm';
 
-describe('<Feedback />', () => {
+describe('<FeedbackForm />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<Feedback />);
+    const wrapper = shallow(<FeedbackForm />);
     const form = wrapper.find('form');
     const inputs = wrapper.find('input');
 
