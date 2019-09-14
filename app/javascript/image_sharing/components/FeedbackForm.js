@@ -5,7 +5,7 @@ export default class FeedbackForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = { statusMessage: '', statusColor: 'black' };
+    this.state = { name: '', comments: '', statusMessage: '', statusColor: 'black' };
   }
 
   handleSubmit(event) {
@@ -30,6 +30,7 @@ export default class FeedbackForm extends React.Component {
   }
 
   setStatusMessage = (message, color) => {
+    console.log(message);
     this.setState({ statusMessage: message, statusColor: color });
     setTimeout(() => {
       this.setState({ statusMessage: '', statusColor: 'black' });
@@ -58,11 +59,11 @@ export default class FeedbackForm extends React.Component {
       >
         <label htmlFor='name' style={{ marginBottom: '0px', display: 'block' }} >
         Your Name:
-          <input id='name' type='text' name='name' size={75} style={{ display: 'block' }} />
+          <input id='name' type='text' name='name' size={75} style={{ display: 'block' }} onChange={(e) => {this.setState({name: e.target.value})}}/>
         </label>
         <label htmlFor='comments' style={{ marginBottom: '0px', display: 'block' }} >
         Comments:
-          <textarea id='comments' name='comments' rows={5} cols={75} style={{ display: 'block' }} />
+          <textarea id='comments' name='comments' rows={5} cols={75} style={{ display: 'block' }} onChange={(e) => {this.setState({comments: e.target.value})}} />
         </label>
         <input type='submit' value='Submit' style={{ color: 'white', backgroundColor: 'blue' }} />
         <span style={{ color: this.state.statusColor }}>
