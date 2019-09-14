@@ -12,9 +12,10 @@ export default class FeedbackForm extends React.Component {
     event.preventDefault();
 
     const formData = { feedback: {
-      name: event.target.name.value,
-      comments: event.target.comments.value,
+      name: this.state.name,
+      comments: this.state.comments,
     } };
+
 
     post('/api/feedbacks', formData)
       .then((response) => {
@@ -59,11 +60,11 @@ export default class FeedbackForm extends React.Component {
       >
         <label htmlFor='name' style={{ marginBottom: '0px', display: 'block' }} >
         Your Name:
-          <input id='name' type='text' name='name' size={75} style={{ display: 'block' }} onChange={(e) => {this.setState({name: e.target.value})}}/>
+          <input id='name' type='text' name='name' size={75} style={{ display: 'block' }} onChange={(e) => { this.setState({ name: e.target.value }); }} />
         </label>
         <label htmlFor='comments' style={{ marginBottom: '0px', display: 'block' }} >
         Comments:
-          <textarea id='comments' name='comments' rows={5} cols={75} style={{ display: 'block' }} onChange={(e) => {this.setState({comments: e.target.value})}} />
+          <textarea id='comments' name='comments' rows={5} cols={75} style={{ display: 'block' }} onChange={(e) => { this.setState({ comments: e.target.value }); }} />
         </label>
         <input type='submit' value='Submit' style={{ color: 'white', backgroundColor: 'blue' }} />
         <span style={{ color: this.state.statusColor }}>

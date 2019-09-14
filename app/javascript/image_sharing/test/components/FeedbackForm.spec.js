@@ -1,11 +1,11 @@
-0/* eslint-env mocha */
+/* eslint-env mocha */
 
 import assert from 'assert';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
-import FeedbackForm from '../../components/FeedbackForm';
-import * as api from '../../utils/helper'
 import sinon from 'sinon';
+import FeedbackForm from '../../components/FeedbackForm';
+import * as api from '../../utils/helper';
 
 describe('<FeedbackForm />', () => {
   it('should render correctly', () => {
@@ -22,22 +22,22 @@ describe('<FeedbackForm />', () => {
     const inputs = wrapper.find('input');
     const textareas = wrapper.find('textarea');
     const forms = wrapper.find('form');
-    const postStub = sinon.stub(api, "post");
+    const postStub = sinon.stub(api, 'post');
     const name = 'Name';
     const comments = 'Comment';
 
-    postStub.withArgs('/api/feedbacks', {feedback: {name: name, comments: comments}}).resolves({message: "Success"});
+    postStub.withArgs('/api/feedbacks', { feedback: { name, comments } }).resolves({ message: 'Success' });
 
-    inputs.at(0).simulate('change', {target: {value: name}});
-    textareas.at(0).simulate('change', {target: {value: comments}});
+    inputs.at(0).simulate('change', { target: { value: name } });
+    textareas.at(0).simulate('change', { target: { value: comments } });
     wrapper.update();
 
-    await forms.at(0).simulate('submit', {preventDefault: () => {}, target: {name: {value: name}, comments: {value: comments}}});
+    await forms.at(0).simulate('submit', { preventDefault: () => {}, target: { name: { value: name }, comments: { value: comments } } });
     wrapper.update();
 
     assert.strictEqual(wrapper.state().name, name);
     assert.strictEqual(wrapper.state().comments, comments);
-    assert.strictEqual(wrapper.state().statusMessage, "Success");
+    assert.strictEqual(wrapper.state().statusMessage, 'Success');
     assert(postStub.calledOnce);
 
     sinon.restore();
@@ -48,15 +48,15 @@ describe('<FeedbackForm />', () => {
     const inputs = wrapper.find('input');
     const textareas = wrapper.find('textarea');
     const forms = wrapper.find('form');
-    const postStub = sinon.stub(api, "post");
+    const postStub = sinon.stub(api, 'post');
 
-    postStub.withArgs('/api/feedbacks', {feedback: {name: '', comments: ''}}).rejects({data: {message: "Fail"}});
+    postStub.withArgs('/api/feedbacks', { feedback: { name: '', comments: '' } }).rejects({ data: { message: 'Fail' } });
 
-    inputs.at(0).simulate('change', {target: {value: ''}});
-    textareas.at(0).simulate('change', {target: {value: ''}});
+    inputs.at(0).simulate('change', { target: { value: '' } });
+    textareas.at(0).simulate('change', { target: { value: '' } });
     wrapper.update();
 
-    await forms.at(0).simulate('submit', {preventDefault: () => {}, target: {name: {value: ''}, comments: {value: ''}}});
+    await forms.at(0).simulate('submit', { preventDefault: () => {}, target: { name: { value: '' }, comments: { value: '' } } });
     wrapper.update();
 
     assert.strictEqual(wrapper.state().name, '');
@@ -65,6 +65,4 @@ describe('<FeedbackForm />', () => {
 
     sinon.restore();
   });
-
-
 });
